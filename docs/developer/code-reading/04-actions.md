@@ -17,6 +17,7 @@ Actions 是 scheduler 的执行阶段。它们决定本轮调度要尝试哪些 
 | [`actions/04-consolidation.md`](actions/04-consolidation.md) | 碎片整理、victim 重排、`allPodsReallocated` validator |
 | [`actions/05-stale-gang-eviction.md`](actions/05-stale-gang-eviction.md) | stale gang grace period、直接 `Session.Evict` 路径 |
 | [`actions/06-queue-order-and-solver.md`](actions/06-queue-order-and-solver.md) | `JobsOrderByQueues`、`JobsSolver`、scenario builder、虚拟分配 |
+| [`11-job-level-solver.md`](11-job-level-solver.md) | `JobSolver` 的完整源码导读：partial probe、scenario builder、`byPodSolver`、validator、Statement |
 
 ## 先打开这些文件
 

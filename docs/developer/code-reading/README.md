@@ -16,6 +16,7 @@
 | [08. 部署与测试](08-deployment-and-tests.md) | Helm、operator 映射、测试目录如何辅助阅读 | [`deployments/kai-scheduler/values.yaml`](../../../deployments/kai-scheduler/values.yaml) |
 | [09. 调度数据流与输出链路](09-data-flow-and-outputs.md) | Snapshot、内部模型、Statement commit、BindRequest、controller 状态流 | [`pkg/scheduler/cache/cache.go`](../../../pkg/scheduler/cache/cache.go) |
 | [10. PodGroup、SubGroup 与 Queue 概念](10-podgroup-queue-concepts.md) | KAI 相比 kube-batch 的层级 PodGroup/SubGroup、leaf Queue、公平性与抢占语义 | [`pkg/apis/scheduling`](../../../pkg/apis/scheduling) |
+| [11. Job-Level Solver 源码导读](11-job-level-solver.md) | `reclaim/preempt/consolidation` 共用求解器、scenario builder、victim 模拟、validator 与 Statement | [`pkg/scheduler/actions/common/solvers/job_solver.go`](../../../pkg/scheduler/actions/common/solvers/job_solver.go) |
 
 ## 第一次阅读建议
 
@@ -24,10 +25,11 @@
 3. 然后读 [03. Session 与 Statement](03-session-and-statement.md)。这是理解 scheduler 为什么能“试算、回滚、提交”的核心。
 4. 之后读 [04. Actions](04-actions.md)，先看 `allocate`，再看 `reclaim/preempt`。
 5. 读 [10. PodGroup、SubGroup 与 Queue 概念](10-podgroup-queue-concepts.md)，把 KAI 的层级 gang 和层级 Queue 语义补齐。
-6. 再读 [05. Plugins](05-plugins.md)，挑一个和当前问题相关的插件深入。
-7. 最后读 [06. API 与 CRD](06-apis-and-crds.md) 和 [07. 控制器与外围组件](07-controllers-and-components.md)，把 Kubernetes 对象流补齐。
-8. 读 [09. 调度数据流与输出链路](09-data-flow-and-outputs.md)，把 snapshot、Statement commit、BindRequest、binder/controller 串起来。
-9. 需要验证行为时读 [08. 部署与测试](08-deployment-and-tests.md)。
+6. 读 [11. Job-Level Solver 源码导读](11-job-level-solver.md)，把 `reclaim/preempt/consolidation` 里的 victim scenario 搜索和 gang 级试算串起来。
+7. 再读 [05. Plugins](05-plugins.md)，挑一个和当前问题相关的插件深入。
+8. 最后读 [06. API 与 CRD](06-apis-and-crds.md) 和 [07. 控制器与外围组件](07-controllers-and-components.md)，把 Kubernetes 对象流补齐。
+9. 读 [09. 调度数据流与输出链路](09-data-flow-and-outputs.md)，把 snapshot、Statement commit、BindRequest、binder/controller 串起来。
+10. 需要验证行为时读 [08. 部署与测试](08-deployment-and-tests.md)。
 
 ## 一句话模型
 

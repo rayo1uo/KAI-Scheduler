@@ -4,6 +4,8 @@
 
 如果对 `minSubGroup`、SubGroup tree、leaf queue、Queue fairness 还不熟，先读 [`../10-podgroup-queue-concepts.md`](../10-podgroup-queue-concepts.md)。这些概念会直接决定 action 初始化过滤、`GetTasksToAllocate()`、`GetTasksToEvict()` 和 `JobsOrderByQueues` 的行为。
 
+如果要深入 `reclaim/preempt/consolidation` 共用的求解器，读完本目录第 06 章后继续看 [`../11-job-level-solver.md`](../11-job-level-solver.md)。那一章按源码顺序展开 `JobSolver`、scenario builder、`byPodSolver`、plugin validator 和 `Statement` 的交互。
+
 ## 默认执行顺序
 
 默认配置来自 [`pkg/scheduler/conf_util/scheduler_conf_util.go`](../../../../pkg/scheduler/conf_util/scheduler_conf_util.go)：
@@ -37,6 +39,7 @@ allocate
 | [04. Consolidation](04-consolidation.md) | 通过搬迁/重排已有任务整理碎片，要求 victim 被重新安置 | [`pkg/scheduler/actions/consolidation/consolidation.go`](../../../../pkg/scheduler/actions/consolidation/consolidation.go) |
 | [05. Stale Gang Eviction](05-stale-gang-eviction.md) | 清理长期 stale 的 gang job，不走 Statement solver | [`pkg/scheduler/actions/stalegangeviction/stalegangeviction.go`](../../../../pkg/scheduler/actions/stalegangeviction/stalegangeviction.go) |
 | [06. Queue Order 与 Solver](06-queue-order-and-solver.md) | 所有 action 共用的 queue/job 排序、victim scenario 搜索和虚拟分配 | [`pkg/scheduler/actions/utils/job_order_by_queue.go`](../../../../pkg/scheduler/actions/utils/job_order_by_queue.go) |
+| [11. Job-Level Solver 源码导读](../11-job-level-solver.md) | `reclaim/preempt/consolidation` 共用求解器的完整源码注释 | [`pkg/scheduler/actions/common/solvers/job_solver.go`](../../../../pkg/scheduler/actions/common/solvers/job_solver.go) |
 
 ## 一张对照表
 
